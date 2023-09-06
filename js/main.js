@@ -1,3 +1,5 @@
+import countryCodes from "./countryCodes.js";
+
 // ? Loader
 document.addEventListener('DOMContentLoaded', () => {
   const elLoader = document.querySelector('.js-loader');
@@ -9,4 +11,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // Variables
 const apiKey = "aa1a46ce5318650594f4612d";
 const api = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
-const flagsOfCountriesSource = `https://hatscripts.github.io/circle-flags/flags/${countryCode}.svg`;
+const flagsOfCountriesSource = `https://hatscripts.github.io/circle-flags/flags/countryCode.svg`;
