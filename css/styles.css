@@ -39,6 +39,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -65,7 +66,7 @@ body {
   height: 100%;
   background-color: var(--white);
   color: var(--black);
-  font-family: "Arial", sans-serif;
+  font-family: "Jost", "Arial", sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
   padding: 0;
