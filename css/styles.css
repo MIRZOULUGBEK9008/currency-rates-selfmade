@@ -1,7 +1,16 @@
 /* CUSTOM-PROPS */
 :root {
-  --black: #000;
+  /* COLORS  */
+  --black: #3d3f42;
+  --gray: #b2b7bc;
+  --light-gray: #fafafa;
+  --blue: #0075eb;
+  --red: #ff542e;
+  --scroll-color: #ced5db;
   --white: #fff;
+
+  /* SHADOWS  */
+  --box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 /* FONT-FACE  */
