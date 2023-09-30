@@ -53,6 +53,57 @@
           <h2 class="visually-hidden">Exchanger</h2>
           <div class="exchanger__inner">
             <!-- * /====================================// -->
+            <!-- FROM -->
+            <!-- * /====================================// -->
+            <div
+              class="exchanger__select-area exchanger__select-area--from select-rate"
+            >
+              <div
+                class="select-rate__selected-zone js-country-rate-selected-zone"
+              >
+                <span class="select-rate__country-name js-country-name-selected"
+                  >GBP &centerdot; British Pound</span
+                >
+                <img
+                  class="select-rate__country-flag js-country-flag-selected"
+                  src="https://hatscripts.github.io/circle-flags/flags/gb.svg"
+                  width="32"
+                  height="32"
+                />
+                <img
+                  class="select-rate__arrow-down-icon"
+                  src="img/arrow-down-icon.png"
+                  alt=""
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                />
+              </div>
+              <div class="select-rate__search-list-wrapper">
+                <div class="select-rate__search-wrapper">
+                  <input
+                    class="select-rate__search js-country-rate-search"
+                    type="text"
+                    inputmode="search"
+                    placeholder="Search currency"
+                  />
+                  <img
+                    class="select-rate__search-icon"
+                    src="img/search-icon.png"
+                    width="20"
+                    height="20"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </div>
+                <div class="select-rate__list-wrapper">
+                  <div class="select-rate__no-data">No data</div>
+                  <ul class="select-rate__list js-select-rate-list"></ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- * /====================================// -->
             <!-- TO -->
             <!-- * /====================================// -->
             <div
@@ -79,9 +130,7 @@
                   height="12"
                 />
               </div>
-              <div
-                class="select-rate__search-list-wrapper js-country-search-list"
-              >
+              <div class="select-rate__search-list-wrapper">
                 <div class="select-rate__search-wrapper">
                   <input
                     class="select-rate__search js-country-rate-search"
@@ -104,10 +153,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- * /====================================// -->
-            <!-- FROM -->
-            <!-- * /====================================// -->
           </div>
         </section>
       </div>
@@ -116,15 +161,13 @@
     <!-- TEMPLATES  -->
     <template id="countryRateTemplate">
       <li class="select-rate__option">
-        <div class="select-rate__flag-wrapper">
-          <img
-            class="select-rate__flag js-country-flag"
-            src=""
-            alt=""
-            width="24"
-            height="24"
-          />
-        </div>
+        <img
+          class="select-rate__flag js-country-flag"
+          src=""
+          alt=""
+          width="24"
+          height="24"
+        />
         <span class="select-rate__rate js-country-rate"></span>
         <span class="select-rate__country-code js-country-code"></span>
       </li>

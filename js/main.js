@@ -1,28 +1,31 @@
-// HTML selection
-const elSelectRateList = document.querySelector(".js-select-rate-list");
-const elCountryRateSearch = document.querySelector(".js-country-rate-search");
-const elCountryRateSelectedZone = document.querySelector(
-  ".js-country-rate-selected-zone"
-);
-const elCountrySearchList = document.querySelector(".js-country-search-list");
-const elCountryNameSelected = document.querySelector(
-  ".js-country-name-selected"
-);
-const elCountryFlageSelected = document.querySelector(
-  ".js-country-flag-selected"
-);
+// imports
+import request from "./request.js";
+import updateDOM from "./updateDOM.js";
+const data = request;
+const updateUI = updateDOM;
+// API
+const API = "https://exchangerate.onrender.com/data/all";
 
-// Template and Fragment
-const countryRateTemplate = document.getElementById(
-  "countryRateTemplate"
-).content;
-
-const countryRateFragment = document.createDocumentFragment();
-
-// ? Loader
-document.addEventListener("DOMContentLoaded", () => {
+// Loader
+window.onload = () => {
   const elLoader = document.querySelector(".js-loader");
   setTimeout(() => {
     elLoader.classList.add("loader-wrapper--none");
   }, 800);
-});
+};
+
+data(API)
+  .then((res) => {
+    if (res.ok && res.status === 200) {
+      return res.json();
+    } else {
+      throw new Error("404.html");
+    }
+  })
+  .then((res) => {
+    const data = res[0]["data"];
+    updateUI(data);
+  })
+  .catch(({ message }) => {
+    window.location.pathname = message;
+  });
