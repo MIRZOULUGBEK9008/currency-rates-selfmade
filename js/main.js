@@ -1,14 +1,28 @@
-import countryCodes from "./countryCodes.js";
+// HTML selection
+const elSelectRateList = document.querySelector(".js-select-rate-list");
+const elCountryRateSearch = document.querySelector(".js-country-rate-search");
+const elCountryRateSelectedZone = document.querySelector(
+  ".js-country-rate-selected-zone"
+);
+const elCountrySearchList = document.querySelector(".js-country-search-list");
+const elCountryNameSelected = document.querySelector(
+  ".js-country-name-selected"
+);
+const elCountryFlageSelected = document.querySelector(
+  ".js-country-flag-selected"
+);
+
+// Template and Fragment
+const countryRateTemplate = document.getElementById(
+  "countryRateTemplate"
+).content;
+
+const countryRateFragment = document.createDocumentFragment();
 
 // ? Loader
-document.addEventListener('DOMContentLoaded', () => {
-  const elLoader = document.querySelector('.js-loader');
+document.addEventListener("DOMContentLoaded", () => {
+  const elLoader = document.querySelector(".js-loader");
   setTimeout(() => {
-    elLoader.classList.add('loader-wrapper--none');
+    elLoader.classList.add("loader-wrapper--none");
   }, 800);
 });
-
-// Variables
-const apiKey = "aa1a46ce5318650594f4612d";
-const api = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
-const flagsOfCountriesSource = `https://hatscripts.github.io/circle-flags/flags/countryCode.svg`;
