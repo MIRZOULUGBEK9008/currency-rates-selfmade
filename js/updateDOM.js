@@ -99,4 +99,12 @@ document.onkeydown = ({ key }) => {
   if (key === "Escape") activeRemover();
 };
 
+// Swipper
+const swipper = document.getElementById("swipper");
+const elExchangerInner = document.getElementById("exchangerInner");
+
+swipper.onclick = () => {
+  elExchangerInner.classList.toggle("exchanger__inner--reverse");
+};
+
 export default updateDOM;

@@ -51,13 +51,11 @@
         <!-- * EXCHANGER -->
         <section class="section-exchange__exchanger exchanger">
           <h2 class="visually-hidden">Exchanger</h2>
-          <div class="exchanger__inner">
+          <div class="exchanger__inner" id="exchangerInner">
             <!-- * /====================================// -->
             <!-- FROM -->
             <!-- * /====================================// -->
-            <div
-              class="exchanger__select-area exchanger__select-area--from select-rate"
-            >
+            <div class="exchanger__select-area select-rate">
               <div
                 class="select-rate__selected-zone js-country-rate-selected-zone"
               >
@@ -103,12 +101,23 @@
               </div>
             </div>
 
+            <!-- SWIPPER -->
+            <button class="exchanger__swipper swipper" id="swipper">
+              <div class="swipper__inner">
+                <img
+                  class="swipper__img"
+                  src="./img/swap-icon.png"
+                  alt="Rate swipper"
+                  width="24"
+                  height="24"
+                />
+              </div>
+            </button>
+
             <!-- * /====================================// -->
             <!-- TO -->
             <!-- * /====================================// -->
-            <div
-              class="exchanger__select-area exchanger__select-area--to select-rate"
-            >
+            <div class="exchanger__select-area select-rate">
               <div
                 class="select-rate__selected-zone js-country-rate-selected-zone"
               >
