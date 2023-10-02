@@ -411,14 +411,18 @@ img {
 
 /* SELECT RATE INPUT  */
 .select-rate__input {
+  display: block;
   padding: 2.5rem;
   border: none;
   font-size: 12rem;
   caret-color: var(--blue);
+  width: 100%;
+  overflow-x: scroll;
+  cursor: e-resize;
 }
 
 .select-rate__input--to {
-  pointer-events: none;
+  user-select: none;
 }
 
 /* 404 */

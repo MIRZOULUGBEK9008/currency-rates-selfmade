@@ -8,19 +8,27 @@ const elCountryRateSelectedZone = document.querySelectorAll(
 );
 const elExchangeFrom = document.getElementById("exchangeFrom");
 const elExchangeTo = document.getElementById("exchangeTo");
-const elRates = document.querySelectorAll(".js-country-rate-selected-zone");
-
-const countryNameFrom = elRates[0].querySelector(".js-country-name-selected");
-const countryNameTo = elRates[1].querySelector(".js-country-name-selected");
-const countryFlagFrom = elRates[0].querySelector(".js-country-flag-selected");
-const countryFlagTo = elRates[1].querySelector(".js-country-flag-selected");
+const countryNameFrom = elCountryRateSelectedZone[0].querySelector(
+  ".js-country-name-selected"
+);
+const countryNameTo = elCountryRateSelectedZone[1].querySelector(
+  ".js-country-name-selected"
+);
+const countryFlagFrom = elCountryRateSelectedZone[0].querySelector(
+  ".js-country-flag-selected"
+);
+const countryFlagTo = elCountryRateSelectedZone[1].querySelector(
+  ".js-country-flag-selected"
+);
 const changerFrom = {
   name: countryNameFrom.textContent,
   src: countryFlagFrom.src,
+  rate: 0,
 };
 const changerTo = {
   name: countryNameTo.textContent,
   src: countryFlagTo.src,
+  rate: 0,
 };
 
 // Template and Fragment
@@ -29,9 +37,20 @@ const countryRateTemplate = document.getElementById(
 ).content;
 const countryRateFragment = document.createDocumentFragment();
 
+// Variables
+let rateFrom, rateTo;
+
 const updateDOM = (data) => {
   data.forEach((country) => {
     const { rateCode: code, rate: newRate, name } = country;
+    if (code === "usd") {
+      rateFrom = newRate;
+      changerFrom.rate = rateFrom;
+    }
+    if (code === "uzs") {
+      rateTo = newRate;
+      changerTo.rate = rateTo;
+    }
     const img = countryRateTemplate.querySelector(".js-country-flag");
     img.src = `https://hatscripts.github.io/circle-flags/flags/${code.slice(
       0,
@@ -101,20 +120,24 @@ document.body.onclick = ({ target }) => {
         .previousElementSibling;
     const selectedCountry = parent.querySelector(".js-country-name-selected");
     selectedCountry.innerHTML = `${code} &centerdot; ${name.textContent}`;
-    const slectedCountryFlag = parent.querySelector(
+    const selectedCountryFlag = parent.querySelector(
       ".js-country-flag-selected"
     );
-    slectedCountryFlag.src = flag;
+    selectedCountryFlag.src = flag;
     if (parent.classList.contains("select-rate__selected-zone--from")) {
       changerFrom.name = parent.querySelector(
         ".js-country-name-selected"
       ).textContent;
       changerFrom.src = parent.querySelector(".js-country-flag-selected").src;
+      changerFrom.rate = target.dataset?.rate;
+      parent.dataset.rate = changerFrom.rate;
     } else {
       changerTo.name = parent.querySelector(
         ".js-country-name-selected"
       ).textContent;
       changerTo.src = parent.querySelector(".js-country-flag-selected").src;
+      changerTo.rate = target.dataset?.rate;
+      parent.dataset.rate = changerTo.rate;
     }
   }
   if (
@@ -131,30 +154,37 @@ document.onkeydown = ({ key }) => {
 
 // Swipper
 const swipper = document.getElementById("swipper");
-const elExchangerInner = document.getElementById("exchangerInner");
 
 let saver = true;
 swipper.onclick = () => {
   swipper.classList.toggle("exchanger__swipper--rotate");
-
+  elExchangeFrom.value = "";
+  elExchangeTo.value = "";
   if (saver) {
     countryNameFrom.textContent = changerTo.name;
     countryNameTo.textContent = changerFrom.name;
     countryFlagFrom.src = changerTo.src;
     countryFlagTo.src = changerFrom.src;
+    elCountryRateSelectedZone[0].dataset.rate = changerTo.rate;
     saver = false;
   } else {
     countryNameFrom.textContent = changerFrom.name;
     countryNameTo.textContent = changerTo.name;
     countryFlagFrom.src = changerFrom.src;
     countryFlagTo.src = changerTo.src;
+    elCountryRateSelectedZone[1].dataset.rate = changerFrom.rate;
     saver = true;
   }
 };
 
 // Exchanger input
 elExchangeFrom.oninput = ({ target: { value } }) => {
-  elExchangeTo.value = value;
+  if (!saver) {
+    elExchangeTo.value = (value / changerTo.rate).toFixed(2);
+  } else {
+    elExchangeTo.value = (value * changerTo.rate).toFixed(2);
+  }
+  if (value === "") elExchangeTo.value = "";
 };
 
 export default updateDOM;
