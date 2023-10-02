@@ -6,6 +6,8 @@ const elCountryRateSearch = document.querySelectorAll(
 const elCountryRateSelectedZone = document.querySelectorAll(
   ".js-country-rate-selected-zone"
 );
+const elExchangeFrom = document.getElementById("exchangeFrom");
+const elExchangeTo = document.getElementById("exchangeTo");
 // Template and Fragment
 const countryRateTemplate = document.getElementById(
   "countryRateTemplate"
@@ -25,6 +27,7 @@ const updateDOM = (data) => {
     const countryCode = countryRateTemplate.querySelector(".js-country-code");
     countryCode.textContent = code;
     const clone = countryRateTemplate.cloneNode(true);
+    clone.lastElementChild.dataset.rate = newRate;
     countryRateFragment.appendChild(clone);
   });
   elSelectRateList.forEach((list) => {
@@ -67,6 +70,7 @@ elCountryRateSearch.forEach((search) => {
 const activeRemover = () => {
   elCountryRateSelectedZone.forEach((zone) => {
     zone.classList.remove("select-rate__selected-zone--active");
+    elExchangeFrom.focus();
   });
 };
 
@@ -104,7 +108,16 @@ const swipper = document.getElementById("swipper");
 const elExchangerInner = document.getElementById("exchangerInner");
 
 swipper.onclick = () => {
-  elExchangerInner.classList.toggle("exchanger__inner--reverse");
+  swipper.classList.toggle("exchanger__swipper--rotate");
+};
+
+// Exchanger input
+elExchangeFrom.oninput = ({ target: { value } }) => {
+  elExchangeTo.value = value;
+};
+
+elExchangeTo.oninput = ({ target: { value } }) => {
+  elExchangeFrom.value = value;
 };
 
 export default updateDOM;

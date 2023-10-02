@@ -84,6 +84,7 @@
                     type="text"
                     inputmode="search"
                     placeholder="Search currency"
+                    autocomplete="off"
                   />
                   <img
                     class="select-rate__search-icon"
@@ -99,6 +100,18 @@
                   <ul class="select-rate__list js-select-rate-list"></ul>
                 </div>
               </div>
+
+              <!-- INPUT -->
+              <input
+                class="select-rate__input"
+                id="exchangeFrom"
+                type="number"
+                min="0"
+                max="10000"
+                maxlength="5"
+                autofocus="true"
+                autocomplete="off"
+              />
             </div>
 
             <!-- SWIPPER -->
@@ -145,6 +158,7 @@
                     class="select-rate__search js-country-rate-search"
                     type="text"
                     inputmode="search"
+                    autocomplete="off"
                     placeholder="Search currency"
                   />
                   <img
@@ -161,6 +175,18 @@
                   <ul class="select-rate__list js-select-rate-list"></ul>
                 </div>
               </div>
+
+              <!-- INPUT -->
+              <input
+                class="select-rate__input"
+                id="exchangeTo"
+                type="number"
+                min="0"
+                max="10000"
+                maxlength="5"
+                autocomplete="off"
+                placeholder="0"
+              />
             </div>
           </div>
         </section>
@@ -169,7 +195,7 @@
 
     <!-- TEMPLATES  -->
     <template id="countryRateTemplate">
-      <li class="select-rate__option">
+      <li class="select-rate__option" data-rate="">
         <img
           class="select-rate__flag js-country-flag"
           src=""
