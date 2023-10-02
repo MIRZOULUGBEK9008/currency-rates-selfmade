@@ -417,6 +417,10 @@ img {
   caret-color: var(--blue);
 }
 
+.select-rate__input--to {
+  pointer-events: none;
+}
+
 /* 404 */
 .section-error__container {
   display: flex;

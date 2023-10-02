@@ -8,6 +8,21 @@ const elCountryRateSelectedZone = document.querySelectorAll(
 );
 const elExchangeFrom = document.getElementById("exchangeFrom");
 const elExchangeTo = document.getElementById("exchangeTo");
+const elRates = document.querySelectorAll(".js-country-rate-selected-zone");
+
+const countryNameFrom = elRates[0].querySelector(".js-country-name-selected");
+const countryNameTo = elRates[1].querySelector(".js-country-name-selected");
+const countryFlagFrom = elRates[0].querySelector(".js-country-flag-selected");
+const countryFlagTo = elRates[1].querySelector(".js-country-flag-selected");
+const changerFrom = {
+  name: countryNameFrom.textContent,
+  src: countryFlagFrom.src,
+};
+const changerTo = {
+  name: countryNameTo.textContent,
+  src: countryFlagTo.src,
+};
+
 // Template and Fragment
 const countryRateTemplate = document.getElementById(
   "countryRateTemplate"
@@ -90,6 +105,17 @@ document.body.onclick = ({ target }) => {
       ".js-country-flag-selected"
     );
     slectedCountryFlag.src = flag;
+    if (parent.classList.contains("select-rate__selected-zone--from")) {
+      changerFrom.name = parent.querySelector(
+        ".js-country-name-selected"
+      ).textContent;
+      changerFrom.src = parent.querySelector(".js-country-flag-selected").src;
+    } else {
+      changerTo.name = parent.querySelector(
+        ".js-country-name-selected"
+      ).textContent;
+      changerTo.src = parent.querySelector(".js-country-flag-selected").src;
+    }
   }
   if (
     !target.classList.contains("select-rate__selected-zone") &&
@@ -107,17 +133,28 @@ document.onkeydown = ({ key }) => {
 const swipper = document.getElementById("swipper");
 const elExchangerInner = document.getElementById("exchangerInner");
 
+let saver = true;
 swipper.onclick = () => {
   swipper.classList.toggle("exchanger__swipper--rotate");
+
+  if (saver) {
+    countryNameFrom.textContent = changerTo.name;
+    countryNameTo.textContent = changerFrom.name;
+    countryFlagFrom.src = changerTo.src;
+    countryFlagTo.src = changerFrom.src;
+    saver = false;
+  } else {
+    countryNameFrom.textContent = changerFrom.name;
+    countryNameTo.textContent = changerTo.name;
+    countryFlagFrom.src = changerFrom.src;
+    countryFlagTo.src = changerTo.src;
+    saver = true;
+  }
 };
 
 // Exchanger input
 elExchangeFrom.oninput = ({ target: { value } }) => {
   elExchangeTo.value = value;
-};
-
-elExchangeTo.oninput = ({ target: { value } }) => {
-  elExchangeFrom.value = value;
 };
 
 export default updateDOM;
